@@ -1,16 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>商品列表</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#f5f5f5;
+    padding:10px;
+}
+
+.header{
+    text-align:center;
+    background:#ff9800;
+    color:white;
+    padding:15px;
+    border-radius:10px;
+}
+
+.product{
+    background:white;
+    margin-top:15px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.name{
+    font-size:18px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.price{
+    color:#ff5722;
+    margin:5px 0;
+    font-size:18px;
+}
+
+button{
+    width:100%;
+    height:40px;
+    border:none;
+    border-radius:10px;
+    background:#ff9800;
+    color:white;
+    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🛒 商品列表
+</div>
+
+<!-- 商品1 -->
+<div class="product">
+    <img src="https://picsum.photos/300/200?1">
+    <div class="name">Steam 礼品卡 RM50</div>
+    <div class="price">RM50</div>
+    <button onclick="addCart('Steam 礼品卡 RM50',50)">
+        加入购物车
+    </button>
+</div>
+
+<!-- 商品2 -->
+<div class="product">
+    <img src="https://picsum.photos/300/200?2">
+    <div class="name">Netflix 一个月</div>
+    <div class="price">RM20</div>
+    <button onclick="addCart('Netflix 一个月',20)">
+        加入购物车
+    </button>
+</div>
+
+<!-- 查看购物车 -->
+<div style="margin-top:20px;">
+    <button onclick="location.href='cart.html'">
+        🛒 查看购物车
+    </button>
+</div>
+
+<script>
+
+// 🛒 加入购物车核心代码
 function addCart(name, price) {
 
-    // 读取购物车
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // 查找是否已有该商品
     let found = cart.find(item => item.name === name);
 
     if (found) {
-        // 如果已存在 → 数量 +1
         found.qty += 1;
     } else {
-        // 如果不存在 → 新增商品
         cart.push({
             name: name,
             price: price,
@@ -18,8 +111,12 @@ function addCart(name, price) {
         });
     }
 
-    // 保存回本地存储
     localStorage.setItem("cart", JSON.stringify(cart));
 
     alert("已加入购物车");
 }
+
+</script>
+
+</body>
+</html>
