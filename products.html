@@ -1,0 +1,25 @@
+function addCart(name, price) {
+
+    // 读取购物车
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // 查找是否已有该商品
+    let found = cart.find(item => item.name === name);
+
+    if (found) {
+        // 如果已存在 → 数量 +1
+        found.qty += 1;
+    } else {
+        // 如果不存在 → 新增商品
+        cart.push({
+            name: name,
+            price: price,
+            qty: 1
+        });
+    }
+
+    // 保存回本地存储
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("已加入购物车");
+}
