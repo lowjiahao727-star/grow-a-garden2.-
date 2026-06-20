@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>购物车</title>
+</head>
+<body>
+
+<h1>购物车</h1>
+
+<div id="cart"></div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(cart.length === 0){
+    document.getElementById("cart").innerHTML = "购物车是空的";
+}else{
+    let html = "";
+    cart.forEach(item => {
+        html += `<p>${item.name} - RM${item.price}</p>`;
+    });
+    document.getElementById("cart").innerHTML = html;
+}
+</script>
+
+</body>
+</html>
